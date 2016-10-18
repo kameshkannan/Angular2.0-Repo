@@ -1,0 +1,135 @@
+# angular2-quickstart
+Angular 2.0 Quick Start - Challenges faced
+Angular 2 - Quick Start 
+
+I have been playing with angular and learning new things, as part of that I spent some time in Angular 2.0 to configure in my local system and run the First 'Hello, World' app, 
+as per the instructions provided in the URL: https://angular.io/docs/ts/latest/quickstart.html#
+Configuring the system to run the angular 2.0 application without visual studio. 
+
+1. I have Installed the node.js V4.6.0 with NPM 2.15.9
+2. Installed the following editors, its your choice  
+	1. WebStorm (from jetbrains) 30day trail
+	2. Sublime - Free 
+3. Then created the sample Quick start app as per the site provided all four configuration files in the folder "angular-quickstart"
+4. Then ran the command - npm install, got the below error 
+	C:\Kamesh\angular-quickstart>npm install
+	npm WARN package.json angular-quickstart@1.0.0 No description
+	npm WARN package.json angular-quickstart@1.0.0 No repository field.
+	npm WARN package.json angular-quickstart@1.0.0 No README data
+	npm WARN package.json angular-quickstart@1.0.0 No license field.
+	npm ERR! Windows_NT 6.1.7601
+	npm ERR! argv "C:\\Program Files (x86)\\nodejs\\node.exe" "C:\\Program Files (x8
+	6)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+	npm ERR! node v4.6.0
+	npm ERR! npm  v2.15.9
+	npm ERR! code ETIMEDOUT
+	npm ERR! errno ETIMEDOUT
+	npm ERR! syscall connect
+
+	npm ERR! network connect ETIMEDOUT 151.101.20.162:443
+	npm ERR! network This is most likely not a problem with npm itself
+	npm ERR! network and is related to network connectivity.
+	npm ERR! network In most cases you are behind a proxy or have bad network settin
+	gs.
+	npm ERR! network
+	npm ERR! network If you are behind a proxy, please make sure that the
+	npm ERR! network 'proxy' config is set properly.  See: 'npm help config'
+
+	npm ERR! Please include the following file with any support request:
+	npm ERR!     C:\Kamesh\angular-quickstart\npm-debug.log
+
+5. To fix the above issue i have configued the Proxy server with the below commands 
+	npm config set proxy http://proxy-server:8080  - NOTE: The name is "proxy-server" itself, not a place holder
+	npm config set https-proxy http://proxy-server:8080
+	
+6. After configuring that i got another error as shown below
+
+	npm ERR! 404 Not Found
+	npm ERR! 404 
+	npm ERR! 404 'angular/compiler' is not in the npm registry.
+	npm ERR! 404 You should bug the author to publish it
+	npm ERR! 404 It was specified as a dependency of 'angular-quickstart'
+	npm ERR! 404 
+	npm ERR! 404 Note that you can also install from a
+	npm ERR! 404 tarball, folder, or http url, or git url.
+	npm ERR! System Windows_NT 6.1.7601
+	npm ERR! command "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\Extensions\\Microsoft\\Web Tools\\External\\\\node\\node" "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\Extensions\\Microsoft\\Web Tools\\External\\npm\\node_modules\\npm\\bin\\npm-cli.js" "install"
+	npm ERR! cwd C:\Kamesh\angular-quickstart\FirstAng2\WebApplication1
+	npm ERR! node -v v0.10.31
+	npm ERR! npm -v 1.4.9
+	npm ERR! code E404
+	
+7. As per the note from the URL: http://stackoverflow.com/a/38994606/3827463 followed the instructions, 
+	In order to solve this, go to Tools > Options > Projects and Solutions > External Web Tools, then move the $(PATH) entry to the top of the list. Reload VS and try again.
+	It started installing the packages... 
+	
+8. But it throwed error at 'typings install' as below 
+
+	typings ERR! message Unable to connect to "https://api.typings.org/entries/dt/node/tags/6.0.0%2B20160909174046"
+	typings ERR! caused by connect ETIMEDOUT 104.24.113.177:443
+	typings ERR! cwd C:\Kamesh\angular-quickstart\FirstAng2\WebApplication1
+	typings ERR! system Windows_NT 6.1.7601
+	typings ERR! command "C:\\Program Files (x86)\\nodejs\\node.exe" "C:\\Kamesh\\angular-quickstart\\FirstAng2\\WebApplication1\\node_modules\\typings\\dist\\bin.js" "install"
+	typings ERR! node -v v4.6.0
+	typings ERR! typings -v 1.4.0
+	typings ERR! code EUNAVAILABLE
+	typings ERR! If you need help, you may report this error at:
+	typings ERR!   <https://github.com/typings/typings/issues>
+	npm ERR! Windows_NT 6.1.7601
+	npm ERR! argv "C:\\Program Files (x86)\\nodejs\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+	npm ERR! node v4.6.0
+	npm ERR! npm  v2.15.9
+	npm ERR! code ELIFECYCLE
+	npm ERR! FirstAng2@1.0.0 postinstall: `typings install`
+	npm ERR! Exit status 1
+	npm ERR! 
+	npm ERR! Failed at the FirstAng2@1.0.0 postinstall script 'typings install'.
+	npm ERR! This is most likely a problem with the FirstAng2 package,
+	npm ERR! not with npm itself.
+	npm ERR! Tell the author that this fails on your system:
+	npm ERR!     typings install
+	npm ERR! You can get information on how to open an issue for this project with:
+	npm ERR!     npm bugs FirstAng2
+	npm ERR! Or if that isn't available, you can get their info via:
+	npm ERR! 
+	npm ERR!     npm owner ls FirstAng2
+	npm ERR! There is likely additional logging output above.
+	npm ERR! Please include the following file with any support request:
+	npm ERR!     C:\Kamesh\angular-quickstart\FirstAng2\WebApplication1\npm-debug.log
+
+	====npm command completed with exit code 1====
+
+9. If you get this error, then please do the following
+	(i) Make sure that you have only one version of angular installed in the system 
+	(ii) If you find any additional versions of typescript delete those and install from beginning 
+	(iii) And then create a file with the name as ".typingsrc" and put the below line in that file 
+				{
+					"proxy":"http://proxy-server:8080",
+					"rejectUnauthorized": false
+				}
+				
+10.	After that save that file, and try again for running the command "npm install"
+	If everything goes well, you will see the below result 
+	
+	====Executing command 'npm install'====
+
+	npm WARN package.json FirstAng2@1.0.0 No description
+	npm WARN package.json FirstAng2@1.0.0 No repository field.
+	npm WARN package.json FirstAng2@1.0.0 No README data
+	npm WARN package.json FirstAng2@1.0.0 No license field.
+
+	> FirstAng2@1.0.0 postinstall C:\Kamesh\angular-quickstart\FirstAng2\WebApplication1
+	> typings install
+	typings WARN deprecated 10/3/2016: "registry:dt/jasmine#2.2.0+20160621224255" is deprecated (updated, replaced or removed)
+	typings WARN deprecated 10/10/2016: "registry:dt/node#6.0.0+20160909174046" is deprecated (updated, replaced or removed)
+	typings WARN deprecated 9/14/2016: "registry:dt/core-js#0.0.0+20160725163759" is deprecated (updated, replaced or removed)
+	├── core-js (global)
+	├── jasmine (global)
+	└── node (global)
+
+	====npm command completed with exit code 0====
+
+11. After this, i have followed the instructions provided in the page to complete my sample application 
+	https://angular.io/docs/ts/latest/quickstart.html#!#prereq
+	
+12. It worked finally i can see the Page with "My First Angular App"
