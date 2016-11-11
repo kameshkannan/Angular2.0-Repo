@@ -1,0 +1,14 @@
+﻿<div class="contaner">
+    <div class="panel panel-default" style="vertical-align:bottom; font-size:12px;width:auto">
+        <div class="panel-heading">Web Api with Angular Nested Components</div>
+        <div class="panel-body">
+            <product-comp [productData]="uiData"></product-comp>
+        </div>
+    </div>
+    <div class="panel panel-default" style="vertical-align:bottom; font-size:12px;width:auto">
+        <div class="panel-heading" (click)="setClicked()">View Model Json</div>
+        <div [hidden]="!clicked" class="panel-body">
+            {{uiData | json}}
+        </div>
+    </div>
+</div>

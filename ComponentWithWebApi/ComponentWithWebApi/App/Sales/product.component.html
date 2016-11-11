@@ -1,0 +1,16 @@
+﻿<div>
+    <table class="table table-bordered">
+        <tbody *ngFor="let p of productData">
+            <tr>
+                <td>Product Name</td>
+                <td><input type="text" [(ngModel)]="p.ProductName" /></td>
+            </tr>
+            <tr>
+                <td>Manufactueres: </td>
+                <td>
+                    <manufacturer [list]="p.Manufacturers"></manufacturer>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
